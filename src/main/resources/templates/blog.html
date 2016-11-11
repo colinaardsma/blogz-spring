@@ -16,5 +16,7 @@
 
 </div>
 
+<div th:with="prev_page=${prev_page},next_page=${next_page},offset=${offset},limit=${limit},posts=${posts}" th:replace="template :: pagination"></div>
+
 </body>
 </html>
