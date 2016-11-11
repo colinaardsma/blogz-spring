@@ -8,5 +8,13 @@
 
 	<!-- TODO - display a single blog post -->
 
+	<h2>
+		<a th:href="'/blog/' + ${username} + '/' + ${uid}" th:text="${title}"></a>
+	</h2>
+	<p th:text="${body}"></p>
+	<p class="post-author">
+		written by <a th:href="'/blog/' + ${username}" th:text="${username}"></a><span th:text="' on ' + ${#dates.format(created, 'yyyy-MM-dd')}"></span>
+	</p>
+
 </body>
 </html>

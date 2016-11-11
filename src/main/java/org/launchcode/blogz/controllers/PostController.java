@@ -1,5 +1,8 @@
 package org.launchcode.blogz.controllers;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.launchcode.blogz.models.Post;
@@ -60,6 +63,17 @@ public class PostController extends AbstractController {
 	public String singlePost(@PathVariable String username, @PathVariable int uid, Model model) {
 		
 		// TODO - implement singlePost
+		Post post = postDao.findByUid(uid);
+		
+        String title = post.getTitle();
+        String body = post.getBody();
+        Date created = post.getCreated();
+        
+		model.addAttribute("author", username);
+		model.addAttribute("title", title);
+		model.addAttribute("body", body);
+		model.addAttribute("created", created);
+		model.addAttribute("uid", uid);
 		
 		return "post";
 	}
@@ -68,6 +82,14 @@ public class PostController extends AbstractController {
 	public String userPosts(@PathVariable String username, Model model) {
 		
 		// TODO - implement userPosts
+		// get user uid
+		User user = userDao.findByUsername(username);
+		int uid = user.getUid();
+		
+		// get user's posts
+		List<Post> posts = postDao.findByAuthor_uid(uid);
+        
+		model.addAttribute("posts", posts);
 		
 		return "blog";
 	}
