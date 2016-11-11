@@ -69,7 +69,7 @@ public class User extends AbstractEntity {
 	}
 	
 	public static boolean isValidPassword(String password) {
-		Pattern validUsernamePattern = Pattern.compile("(\\S){6,20}");
+		Pattern validUsernamePattern = Pattern.compile("(\\S){5,20}");
 		Matcher matcher = validUsernamePattern.matcher(password);
 		return matcher.matches();
 	}
