@@ -33,7 +33,7 @@ public class PostController extends AbstractController {
 	@RequestMapping(value = "/blog/newpost", method = RequestMethod.POST)
 	public String newPost(HttpServletRequest request, Model model) {
 		
-		// TODO - implement newPost
+		// implement newPost
 		
 		// get author (user) from session
         Integer userId = (Integer) request.getSession().getAttribute(AbstractController.userSessionKey);
@@ -56,13 +56,16 @@ public class PostController extends AbstractController {
         Post post = new Post(title, body, author);
         postDao.save(post);
         
-		return "redirect:/blog"; // TODO - this redirect should go to the new post's page  		
+        String username = author.getUsername();
+        int uid = post.getUid();
+        
+		return "redirect:/blog/" + username + "/" + uid;		
 	}
 	
 	@RequestMapping(value = "/blog/{username}/{uid}", method = RequestMethod.GET)
 	public String singlePost(@PathVariable String username, @PathVariable int uid, Model model) {
 		
-		// TODO - implement singlePost
+		// implement singlePost
 		Post post = postDao.findByUid(uid);
 		
         String title = post.getTitle();
@@ -81,7 +84,6 @@ public class PostController extends AbstractController {
 	@RequestMapping(value = "/blog/{username}", method = RequestMethod.GET)
 	public String userPosts(@PathVariable String username, Model model) {
 		
-		// TODO - implement userPosts
 		// get user uid
 		User user = userDao.findByUsername(username);
 		int uid = user.getUid();

@@ -25,7 +25,7 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public String signup(HttpServletRequest request, Model model) {
 		
-		// TODO - implement signup
+		// implement signup
 
 		// get params from request
 		String username = request.getParameter("username");
@@ -73,7 +73,7 @@ public class AuthenticationController extends AbstractController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpServletRequest request, Model model) {
 		
-		// TODO - implement login
+		// implement login
 		// get params from request
 		String username = request.getParameter("username");
 		model.addAttribute("username", username);
